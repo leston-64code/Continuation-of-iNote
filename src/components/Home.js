@@ -1,10 +1,12 @@
 
-import {React,useContext } from 'react'
-import noteContext from '../context/notes/noteContext'
+import {React } from 'react'
+// import noteContext from '../context/notes/noteContext'
+import Notes from './Notes'
 
 
 
 export default function Home() {
+  
     
   return (
     <>
@@ -24,6 +26,10 @@ export default function Home() {
   <button type="submit" className="btn btn-primary">Add note</button>
 </form>
     </div>
+    <div className="container">
+      <Notes/>
+    </div>
+   
     </>
   )
 }
