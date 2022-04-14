@@ -11,7 +11,7 @@ const router=express.Router()
 // get a note
 router.post("/hello",fetchuser, async(req,res)=>{
     const superman=req.car.id
-    console.log(superman)
+    // console.log(superman)
     const noter= await Note.find({superman})
     // console.log(noter)
     res.json(noter)
@@ -104,8 +104,8 @@ router.delete("/delete/:id",fetchuser,async(req,res)=>{
         return res.status(400).json({error:"Note allowed"})
         
     }
-    console.log(note.user.toString())
-    console.log(req.car.id)
+    // console.log(note.user.toString())
+    // console.log(req.car.id)
 
     note= await Note.findByIdAndDelete(req.params.id)
     res.json({note})
