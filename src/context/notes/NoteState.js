@@ -25,7 +25,7 @@ const NoteState = (props) => {
 
         });
         const json=await response.json()
-       console.log(json)
+    //    console.log(json)
        setnotes(json)
     }
        
@@ -46,20 +46,22 @@ const NoteState = (props) => {
             body: JSON.stringify({ title, description, tag })
 
         });
-        // const json = response.json()
+        const newnote = await response.json()
 
 
 
         console.log("Adding a note")
-        const newnote = {
-            "_id": "6255998abf544a4355068833",
-            "user": "62526571eeedaca47f09a54d",
-            "title": title,
-            "description": description,
-            "tag": tag,
-            "date": "2022-04-12T14:48:06.868Z",
-            "__v": 0
-        }
+        // const newnote = {
+        //     "_id": "6255998abf544a4355068833",
+        //     "user": "62526571eeedaca47f09a54d",
+        //     "title": title,
+        //     "description": description,
+        //     "tag": tag,
+        //     "date": "2022-04-12T14:48:06.868Z",
+        //     "__v": 0
+        // }
+       
+        // const newnote=json
         setnotes(notes.concat(newnote))
     }
 
@@ -92,7 +94,7 @@ const NoteState = (props) => {
                 break
             }
         }
-        console.log(newnotes)
+        // console.log(newnotes)
         setnotes(newnotes)
     }
 
@@ -112,10 +114,10 @@ const NoteState = (props) => {
 
         });
        const json=response.json()
-       console.log(json)
+    //    console.log(json)
 
         //Logic to delete note
-        console.log("Deleting note with id " + id)
+        // console.log("Deleting note with id " + id)
         const verytnewnote = notes.filter((notewhichyougetfromid) => { return notewhichyougetfromid._id !== id })
         setnotes(verytnewnote)
 

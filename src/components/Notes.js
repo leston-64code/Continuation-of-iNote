@@ -91,6 +91,10 @@ function Notes() {
 
       <div className="container row">
         <h1>Your notes</h1>
+        <div className="container">
+        {notes.length===0 && "No notes to display"}
+        </div>
+        
         {notes.map((individualnote) => {
           // return individualnote.title,individualnote.description
           // return <Notesitem key={individualnote._id}  keyr={individualnote._id} title={individualnote.title} description={individualnote.description}/>
