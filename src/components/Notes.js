@@ -5,24 +5,31 @@ import Notesitem from './Notesitem'
 
 
 function Notes() {
+  
+
   const context = useContext(noteContext)
-  const { notes, getnote } = context
+  const { notes, getnote,editnote } = context
+  
+  const [note, setnote] = useState({ id:"",etitle: "", edescription: "", etag: "" })
   // console.log(context)
   //   console.log(context.notes)
-  useEffect(() => {
-    getnote()
-  }, [])
+  
 
   const updatenote = (currentnote) => {
     ref.current.click()
-    setnote({ etitle: currentnote.title, edescription: currentnote.description, etag: currentnote.tag })
+    setnote({ id:currentnote._id, etitle: currentnote.title, edescription: currentnote.description, etag: currentnote.tag })
 
   }
   const ref = useRef(null)
+  const refclose = useRef(null)
+
+  useEffect(() => {
+    getnote()
+    // eslint-disable-next-line
+  }, [])
 
 
 
-  const [note, setnote] = useState({ etitle: "", edescription: "", etag: "" })
 
   const onchange = (e) => {
     setnote({ ...note, [e.target.name]: e.target.value })
@@ -31,7 +38,9 @@ function Notes() {
 
   const onclick = (e) => {
     console.log("updating the note", note)
-    e.preventDefault()
+    editnote(note.id,note.etitle,note.edescription,note.etag)
+    refclose.current.click()
+    // e.preventDefault()
     // addnote(note.title, note.description, note.tag)
   }
 
@@ -73,7 +82,7 @@ function Notes() {
 
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" ref={refclose}>Close</button>
               <button type="button" className="btn btn-primary" onClick={onclick}>Update note</button>
             </div>
           </div>

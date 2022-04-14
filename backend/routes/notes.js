@@ -52,10 +52,7 @@ router.put("/update/:id",fetchuser,async(req,res)=>{
     const {title,description,tag}=req.body
 
     
-    // const errors = validationResult(req);
-    // if (!errors.isEmpty()) {
-    //   return res.status(400).json({ errors: errors.array() });
-    // }
+    
 
     const nayawala={}
     if(title){nayawala.title=title}
@@ -65,16 +62,17 @@ router.put("/update/:id",fetchuser,async(req,res)=>{
 
 
     let note= await Note.findById(req.params.id)
+    
     if(!note){
-        res.status(400).json({error:"Note not found"})
+       return  res.status(400).json({error:"Note not found"})
     }
 
     if(note.user.toString() !==req.car.id){
-        res.status(400).json({error:"You are hacker"})
+       return res.status(400).json({error:"You are hacker"})
         
     }
-    console.log(note.user.toString())
-    console.log(req.car.id)
+    // console.log(note.user.toString())
+    // console.log(req.car.id)
 
     note= await Note.findByIdAndUpdate(req.params.id,{$set:nayawala},{new:true})
     res.json({note})
