@@ -63,9 +63,10 @@ router.post("/login",[
     body("email","Login with correct credentials"),
     body("password","Login with valid password")
 ],async ( req,res)=>{
+    let success=false
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({success, errors: errors.array() });
     }
 
     const {email,password}= await req.body
@@ -75,12 +76,12 @@ router.post("/login",[
         
     const user=await User.findOne({email})
     if(!user){
-        return res.status(400).json({error:"Login with valid credentials"})
+        return res.status(400).json({success,error:"Login with valid credentials"})
     }
 
     const passcom= await bcrypt.compare(password,user.password)
     if(!passcom){
-        return res.status(400).json({error:"Password is incorrect"})
+        return res.status(400).json({success,error:"Password is incorrect"})
     }
 
     const data={
@@ -90,7 +91,9 @@ router.post("/login",[
     }
 
     let authtoken1=jwt.sign(data,seckey)
-    res.json({authtoken1})
+    success=true
+    return res.json({success ,authtoken1})
+    console.log(authtoken1)
 
 
         
