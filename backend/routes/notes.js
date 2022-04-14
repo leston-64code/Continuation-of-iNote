@@ -97,11 +97,11 @@ router.delete("/delete/:id",fetchuser,async(req,res)=>{
 
     let note= await Note.findById(req.params.id)
     if(!note){
-        res.status(400).json({error:"Note not found"})
+        return res.status(400).json({error:"Note not found"})
     }
 
     if(note.user.toString() !==req.car.id){
-        res.status(400).json({error:"Note allowed"})
+        return res.status(400).json({error:"Note allowed"})
         
     }
     console.log(note.user.toString())
