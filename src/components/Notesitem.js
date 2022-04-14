@@ -3,7 +3,7 @@ import noteContext from '../context/notes/noteContext'
 
 function Notesitem(props) {
     // const {title,description}=props
-    const {propdatanote}=props
+    const {propdatanote,updatenote}=props
     const context=useContext(noteContext)
     const {deletenote}=context
     
@@ -17,7 +17,7 @@ function Notesitem(props) {
                     <p className="card-text">{propdatanote.description}</p>
                     <i className="fa-solid fa-trash-can mx-2" onClick={()=>{deletenote(propdatanote._id)
                     }} ></i>
-                    <i className="fa-solid fa-pen-to-square mx-2"></i>
+                    <i className="fa-solid fa-pen-to-square mx-2" onClick={()=>{updatenote(propdatanote)}}></i>
                     {/* <p>{props.keyr}</p> */}
                 </div>
             </div>
