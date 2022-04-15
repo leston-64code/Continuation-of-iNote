@@ -96,7 +96,7 @@ router.post("/login",[
     let authtoken1=jwt.sign(data,seckey)
     success=true
     return res.json({success ,authtoken1})
-    console.log(authtoken1)
+    // console.log(authtoken1)
 
 
         

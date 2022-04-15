@@ -11,7 +11,8 @@ const router=express.Router()
 // get a note
 router.post("/hello",fetchuser, async(req,res)=>{
     const superman=req.car.id
-    // console.log(superman)
+    // const superman=localStorage.getItem("token")
+    console.log(superman)
     const noter= await Note.find({superman})
     // console.log(noter)
     res.json(noter)
